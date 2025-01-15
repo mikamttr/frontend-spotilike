@@ -4,7 +4,7 @@ import NavLogo from './components/NavLogo.vue';
 </script>
 
 <template>
-  <div class="navbar">
+  <header class="navbar">
     <NavLogo />
 
     <form class="search-form" action="">
@@ -15,7 +15,7 @@ import NavLogo from './components/NavLogo.vue';
       <RouterLink to="/login">Login</RouterLink>
       <RouterLink to="/signup">Sign Up</RouterLink>
     </nav>
-  </div>
+  </header>
 
   <RouterView />
 </template>
@@ -38,6 +38,10 @@ import NavLogo from './components/NavLogo.vue';
   border-radius: 50px;
   border: none;
   padding: 0 1rem;
+}
+
+.search-input:focus-visible {
+  outline: 3px solid hsl(160, 100%, 37.1%);
 }
 
 nav {

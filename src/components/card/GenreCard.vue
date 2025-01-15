@@ -63,6 +63,6 @@ export default {
 }
 
 .genre-card:hover {
-    opacity: .75;
+    opacity: .6;
 }
 </style>

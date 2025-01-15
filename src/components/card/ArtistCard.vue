@@ -1,5 +1,5 @@
 <template>
-    <div class="artist-card">
+    <div class="artist-card" @click="navigateToDetail(id)">
         <img :src="image" class="artist-image" />
         <div class="artist-info">
             <h3 class="artist-name">{{ name }}</h3>
@@ -9,6 +9,8 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
 defineProps({
     name: {
         type: String,
@@ -18,7 +20,17 @@ defineProps({
         type: String,
         required: true,
     },
+    id: {
+        type: [Number, String],
+        required: true,
+    },
 });
+
+const router = useRouter();
+
+function navigateToDetail(id) {
+    router.push({ name: 'artistDetail', params: { id } });
+}
 </script>
 
 <style scoped>
@@ -33,7 +45,7 @@ defineProps({
 }
 
 .artist-card:hover {
-    opacity: .75;
+    opacity: .6;
 }
 
 .artist-image {
@@ -41,7 +53,6 @@ defineProps({
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    background: #eee;
 }
 
 .artist-info {

@@ -1,5 +1,5 @@
 <template>
-    <div class="album-card">
+    <div class="album-card" @click="navigateToDetail(id)">
         <img :src="image" class="album-image" />
         <div class="album-info">
             <h3 class="album-title">{{ title }}</h3>
@@ -9,6 +9,8 @@
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router';
+
 defineProps({
     title: {
         type: String,
@@ -22,7 +24,17 @@ defineProps({
         type: String,
         required: true,
     },
+    id: {
+        type: [Number, String],
+        required: true,
+    },
 });
+
+const router = useRouter();
+
+function navigateToDetail(id) {
+    router.push({ name: 'albumDetail', params: { id } });
+}
 </script>
 
 <style scoped>
@@ -31,13 +43,14 @@ defineProps({
     flex-direction: column;
     align-items: center;
     text-align: center;
+    width: 150px;
     margin: 1rem;
     cursor: pointer;
     transition: 300ms ease;
 }
 
 .album-card:hover {
-    opacity: .75;
+    opacity: .6;
 }
 
 .album-image {
@@ -45,7 +58,6 @@ defineProps({
     height: 120px;
     border-radius: 8px;
     object-fit: cover;
-    background: #eee;
 }
 
 .album-info {
@@ -56,6 +68,10 @@ defineProps({
     font-size: 1rem;
     font-weight: bold;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
 }
 
 .album-artist {
