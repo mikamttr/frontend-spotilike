@@ -12,10 +12,8 @@ import GenreCard from '@/components/card/GenreCard.vue';
 import axios from 'axios';
 
 export default {
-  name: 'GenreView',
-  components: {
-    GenreCard,
-  },
+  name: 'GenresView',
+  components: { GenreCard },
   data() {
     return {
       genres: [],
@@ -27,11 +25,12 @@ export default {
         this.genres = response.data.Genres;
       })
       .catch((error) => {
-        console.error("Il y a eu une erreur lors de la récupération des genres : ", error);
+        console.error('Error fetching genres:', error);
       });
-  }
+  },
 };
 </script>
+
 
 <style>
 .genre-cards-container {

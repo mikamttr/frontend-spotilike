@@ -1,12 +1,12 @@
 <template>
-    <div :style="cardStyle" class="genre-card">
+    <div :style="cardStyle" class="genre-card" @click="goToGenreDetail">
         <h3>{{ genre.title }}</h3>
     </div>
 </template>
 
 <script>
 export default {
-    name: "GenreCard",
+    name: 'GenreCard',
     props: {
         genre: {
             type: Object,
@@ -18,8 +18,8 @@ export default {
         },
     },
     computed: {
-        colors() {
-            return [
+        cardStyle() {
+            const colors = [
                 "#1E2A38", // Dark Blue
                 "#2D3E50", // Charcoal Grey
                 "#3C6E71", // Slate Green
@@ -31,20 +31,25 @@ export default {
                 "#27AE60", // Green
                 "#F39C12", // Yellow-Orange
             ];
-
-        },
-        cardStyle() {
-            const colorIndex = this.index % this.colors.length;
-            const color = this.colors[colorIndex];
             return {
-                backgroundColor: color,
+                backgroundColor: colors[this.index % colors.length],
                 color: "white",
                 padding: "20px",
                 borderRadius: "8px",
                 textAlign: "center",
                 width: "200px",
                 margin: "10px",
+                cursor: "pointer",
             };
+        },
+    },
+    methods: {
+        goToGenreDetail() {
+            this.$router.push({
+                name: 'genreDetail',
+                params: { id: this.genre.id }, // Pass ID as route param
+                query: { title: this.genre.title, description: this.genre.description }, // Additional data as query params
+            });
         },
     },
 };

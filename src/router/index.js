@@ -14,6 +14,7 @@ const router = createRouter({
     { path: '/artist/:id', name: 'artistDetail', component: () => import('../views/artists/ArtistDetail.vue'), props: true },
 
     { path: '/genres', name: 'genres', component: () => import('../views/genres/GenresView.vue'), },
+    { path: '/genre/:id', name: 'genreDetail', component: () => import('../views/genres/GenreDetail.vue'), props: true },
   ],
 })
 
