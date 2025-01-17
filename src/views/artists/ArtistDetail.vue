@@ -23,7 +23,6 @@ import axios from 'axios';
 import ArtistCard from "@/components/card/ArtistCard.vue";
 import Tracklist from '@/components/TrackList.vue';
 
-// Define props to get the artist id
 const props = defineProps({
     id: {
         type: String,

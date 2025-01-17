@@ -1,11 +1,11 @@
 <template>
   <div class="login-container">
-    <form class="login-form">
+    <form class="login-form" @submit.prevent="handleLogin">
       <h2>Se Connecter</h2>
 
       <div class="form-group">
-        <label for="email">Adresse email ou nom d'utilisateur</label>
-        <input type="text" id="email" placeholder="Adresse email ou nom d'utilisateur" v-model="email" />
+        <label for="email">Adresse email</label>
+        <input type="text" id="email" placeholder="Adresse email" v-model="email" />
       </div>
 
       <div class="form-group">
@@ -25,9 +25,31 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
+import { useRouter } from "vue-router";
 
 const email = ref("");
 const password = ref("");
+const router = useRouter();
+
+const handleLogin = async () => {
+  try {
+    const response = await axios.post("http://127.0.0.1:5049/api/users/login", {
+      email: email.value,
+      password: password.value,
+    });
+    const { access_token } = response.data;
+
+    // Save token in local storage
+    localStorage.setItem("access_token", access_token);
+
+    // Redirect to home page and refresh the window
+    window.location.href = "/";
+  } catch (error) {
+    console.error("Login failed:", error);
+    alert("Invalid email or password");
+  }
+};
 </script>
 
 <style scoped>
