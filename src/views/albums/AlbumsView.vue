@@ -1,3 +1,4 @@
+<!-- Albums list page -->
 <template>
   <div class="wrapper">
     <h1>Albums</h1>

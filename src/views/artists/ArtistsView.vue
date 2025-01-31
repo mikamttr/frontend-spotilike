@@ -1,3 +1,4 @@
+<!-- Artists list page -->
 <template>
   <div class="wrapper">
     <h1>Artistes</h1>

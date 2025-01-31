@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import { isAdmin } from "@/utils/jwt";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,20 @@ const router = createRouter({
 
     { path: '/genres', name: 'genres', component: () => import('../views/genres/GenresView.vue'), },
     { path: '/genre/:id', name: 'genreDetail', component: () => import('../views/genres/GenreDetail.vue'), props: true },
+
+    {
+      path: "/admin",
+      component: () => import('../views/AdminView.vue'),
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.getItem("access_token");
+
+        if (!token || !isAdmin(token)) {  // Vérifie si l'utilisateur est admin
+          alert("Accès refusé. Vous devez être un administrateur.");
+          return next("/");  // Redirige vers la page d'accueil si non admin
+        }
+        next();  // Laisse passer si admin
+      }
+    }
   ],
 })
 

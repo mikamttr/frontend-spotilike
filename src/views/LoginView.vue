@@ -45,6 +45,7 @@ const handleLogin = async () => {
 
     // Redirect to home page and refresh the window
     window.location.href = "/";
+    console.log(access_token);
   } catch (error) {
     console.error("Login failed:", error);
     alert("Invalid email or password");

@@ -1,3 +1,4 @@
+<!-- Album card component -->
 <template>
     <div class="album-card" @click="navigateToDetail(id)">
         <img :src="image" class="album-image" />

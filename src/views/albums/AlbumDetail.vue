@@ -1,3 +1,4 @@
+<!-- Album details page -->
 <template>
     <div class="wrapper">
         <div v-if="album">
@@ -11,7 +12,9 @@
                         <p class="track-count">{{ songs.length }} tracks</p>
                     </div>
                 </div>
-                <Tracklist :songs="songs" />
+                <div class="album-tracks">
+                    <Tracklist :songs="songs" />
+                </div>
             </div>
         </div>
         <div v-else>
@@ -59,7 +62,7 @@ const fetchSongs = async () => {
 const formatReleaseDate = (dateString) => {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', options);
+    return date.toLocaleDateString('fr-FR', options);
 };
 
 onMounted(() => {
@@ -79,7 +82,7 @@ onMounted(() => {
 .album-header {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 1rem;
 }
 
 .album-cover {
@@ -111,5 +114,9 @@ onMounted(() => {
 .track-count {
     font-size: 14px;
     color: #9e9e9e;
+}
+
+.album-tracks {
+    padding: 1rem;
 }
 </style>

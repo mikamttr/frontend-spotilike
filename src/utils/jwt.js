@@ -14,3 +14,8 @@ export function parseJwt(token) {
         return null;
     }
 }
+
+export function isAdmin(token) {
+    const decoded = parseJwt(token);
+    return decoded && decoded.role === 1; // Admin role is 1
+}

@@ -1,3 +1,4 @@
+<!-- Artist details page -->
 <template>
     <div class="wrapper">
         <div v-if="artist">

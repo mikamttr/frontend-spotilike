@@ -1,3 +1,4 @@
+<!-- Artist card component -->
 <template>
     <div class="artist-card" @click="navigateToDetail(id)">
         <img :src="image" class="artist-image" />
